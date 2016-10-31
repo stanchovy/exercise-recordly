@@ -1,0 +1,25 @@
+.hideit {
+    display: none;
+}
+
+.center-module {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    border: 1px solid #aaa;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.login .title {
+    margin-bottom: 30px;
+}
+
+.recordly-navigator {
+    margin: 50px;
+}

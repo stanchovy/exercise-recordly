@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import include
+from django.conf.urls.static import static
 from recordly import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^artist/$', views.Artists.as_view()),
-]
+    url(r'^dologin$', views.DoLogin.as_view()),
+    url(r'^album(/(?P<filter>\w+))?$', views.Albums.as_view()),
+    url(r'^artist(/(?P<filter>\w+))?$', views.Artists.as_view()),
+    url(r'^song(/(?P<filter>\w+))?$', views.Songs.as_view()),
+    url(r'^search/(?P<searchterm>\w+)$', views.Search.as_view()),
+    url('^', include('django.contrib.auth.urls')),
+    url(r'^recordly$', views.RecordlyView.as_view()),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

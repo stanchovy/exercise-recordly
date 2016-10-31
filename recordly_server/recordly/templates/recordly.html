@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Recordly</title>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/static/recordly.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+    <script src='/static/recordly.js'></script>
+</head>
+    <body ng-app='RecordlyApp'>
+        <div recordly-navigator class='recordly-navigator'>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active" id='main-nav-explore'><a href="#">Explore</a></li>
+                <li role="presentation" id='main-nav-search'><a href="#">Search</a></li>
+            </ul>
+            <div>
+                <div id='recordly-explore'>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="favorites"> Favorites
+                        </label>
+                    </div>
+                    <ul recordly-explorer-navigator class="nav nav-tabs">
+                        <li><a href="#albums-tab" data-toggle="tab">Albums</a></li>
+                        <li><a href="#artists-tab" data-toggle="tab">Artists</a></li>
+                        <li><a href="#songs-tab" data-toggle="tab">Songs</a></li>
+                    </ul>
+                    <div>
+                        <div recordly-explore albumlist='albumlist' artistlist='artistlist' songlist='songlist' class="tab-content">
+                            <div albums id='albums-tab' class="tab-pane">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat='album in albumlist'>[[ album.title ]]
+                                    <ul class="list-group">
+                                        <li class="list-group-item" ng-repeat='song in album.songs'>[[ song.title ]]
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div artists id='artists-tab' class="tab-pane">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat='artist in artistlist'>[[ artist.name ]]
+                                </ul>
+                            </div>
+                            <div songs id='songs-tab' class="tab-pane">
+                                <ul class="list-group">
+                                    <li class="list-group-item" ng-repeat='song in songlist'>[[ song.title ]]
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div recordly-search id='recordly-search' class='hideit' results='results'>
+                    <div class="form-group">
+                        <label for="searchbox">Search</label>
+                        <input type="text" class="form-control" id="searchbox" class='searchbox' placeholder="Search for a song">
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat='result in results'>[[ result.title ]]
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
